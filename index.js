@@ -2,6 +2,8 @@ const express = require('express');
 const { engine } = require('express/lib/application');
 const app = express()
 const port = 8000;
+// require database
+const db = require('./config/mongoose');
 
 
 // set up static folder, express-ejs-Layouts and use it
