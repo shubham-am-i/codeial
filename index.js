@@ -3,16 +3,24 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const { engine } = require('express/lib/application');
 const expressLayouts = require('express-ejs-layouts');
+// require database
+const db = require('./config/mongoose');
 const session = require('express-session');
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
 const MongoStore = require('connect-mongo');
+const sassMiddleware = require('node-sass-middleware');
 
 const app = express()
-// require database
-const db = require('./config/mongoose');
 
 
+app.use(sassMiddleware({
+    src: './assets/scss',
+    dest: './assets/css', 
+    debug: true,
+    outputStyle: 'extended',
+    prefix: '/css'
+}));
 // set up static folder, express-ejs-Layouts,cookie-parser, body-parser and use it
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
